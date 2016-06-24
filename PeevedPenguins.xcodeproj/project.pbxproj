@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49139F841D1DB89C00E2A264 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49139F831D1DB89C00E2A264 /* Level1.sks */; };
+		49139F861D1DC6BF00E2A264 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49139F851D1DC6BF00E2A264 /* Level2.sks */; };
+		49139F881D1DCB8900E2A264 /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49139F871D1DCB8900E2A264 /* Level4.sks */; };
+		49139F8A1D1DCE8300E2A264 /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49139F891D1DCE8300E2A264 /* Level5.sks */; };
 		4981C8001D1C6FB900FBBE87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981C7FF1D1C6FB900FBBE87 /* AppDelegate.swift */; };
 		4981C8021D1C6FB900FBBE87 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4981C8011D1C6FB900FBBE87 /* GameScene.sks */; };
 		4981C8041D1C6FB900FBBE87 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4981C8031D1C6FB900FBBE87 /* GameScene.swift */; };
@@ -27,6 +31,7 @@
 		49CF39691D1CA8A1009A681F /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CF39671D1CA8A1009A681F /* spark.png */; };
 		49CF396C1D1CA9B5009A681F /* sfx_seal.caf in Resources */ = {isa = PBXBuildFile; fileRef = 49CF396B1D1CA9B5009A681F /* sfx_seal.caf */; };
 		49CF39781D1D9E5A009A681F /* BlockDestruction.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49CF39771D1D9E5A009A681F /* BlockDestruction.sks */; };
+		49CF397A1D1DA93A009A681F /* PowerPenguin.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49CF39791D1DA93A009A681F /* PowerPenguin.sks */; };
 		49D5C87A1D1C794D00F41F80 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C86E1D1C794D00F41F80 /* CGFloat+Extensions.swift */; };
 		49D5C87B1D1C794D00F41F80 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C86F1D1C794D00F41F80 /* CGPoint+Extensions.swift */; };
 		49D5C87C1D1C794D00F41F80 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C8701D1C794D00F41F80 /* CGVector+Extensions.swift */; };
@@ -39,10 +44,14 @@
 		49D5C8831D1C794D00F41F80 /* SKTEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C8771D1C794D00F41F80 /* SKTEffects.swift */; };
 		49D5C8841D1C794D00F41F80 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C8781D1C794D00F41F80 /* SKTTimingFunctions.swift */; };
 		49D5C8851D1C794D00F41F80 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C8791D1C794D00F41F80 /* Vector3.swift */; };
-		49D5C8881D1C7D6C00F41F80 /* Level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49D5C8871D1C7D6C00F41F80 /* Level1.sks */; };
+		49D5C8881D1C7D6C00F41F80 /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49D5C8871D1C7D6C00F41F80 /* Level3.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49139F831D1DB89C00E2A264 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
+		49139F851D1DC6BF00E2A264 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
+		49139F871D1DCB8900E2A264 /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
+		49139F891D1DCE8300E2A264 /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
 		4981C7FC1D1C6FB900FBBE87 /* PeevedPenguins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeevedPenguins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4981C7FF1D1C6FB900FBBE87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4981C8011D1C6FB900FBBE87 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -65,6 +74,7 @@
 		49CF39671D1CA8A1009A681F /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		49CF396B1D1CA9B5009A681F /* sfx_seal.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_seal.caf; sourceTree = "<group>"; };
 		49CF39771D1D9E5A009A681F /* BlockDestruction.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockDestruction.sks; sourceTree = "<group>"; };
+		49CF39791D1DA93A009A681F /* PowerPenguin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PowerPenguin.sks; sourceTree = "<group>"; };
 		49D5C86E1D1C794D00F41F80 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		49D5C86F1D1C794D00F41F80 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		49D5C8701D1C794D00F41F80 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -77,7 +87,7 @@
 		49D5C8771D1C794D00F41F80 /* SKTEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTEffects.swift; sourceTree = "<group>"; };
 		49D5C8781D1C794D00F41F80 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		49D5C8791D1C794D00F41F80 /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
-		49D5C8871D1C7D6C00F41F80 /* Level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level1.sks; sourceTree = "<group>"; };
+		49D5C8871D1C7D6C00F41F80 /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +149,7 @@
 			children = (
 				4981C84B1D1C718A00FBBE87 /* Bear.sks */,
 				4981C8531D1C72EE00FBBE87 /* Penguin.sks */,
+				49CF39791D1DA93A009A681F /* PowerPenguin.sks */,
 				4981C8571D1C73E800FBBE87 /* Seal.sks */,
 				49CF396A1D1CA9B5009A681F /* SFX */,
 			);
@@ -175,7 +186,11 @@
 		49D5C8861D1C7D5F00F41F80 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				49D5C8871D1C7D6C00F41F80 /* Level1.sks */,
+				49139F831D1DB89C00E2A264 /* Level1.sks */,
+				49139F851D1DC6BF00E2A264 /* Level2.sks */,
+				49D5C8871D1C7D6C00F41F80 /* Level3.sks */,
+				49139F871D1DCB8900E2A264 /* Level4.sks */,
+				49139F891D1DCE8300E2A264 /* Level5.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -241,19 +256,24 @@
 			files = (
 				4981C8581D1C73E800FBBE87 /* Seal.sks in Resources */,
 				4981C8541D1C72EE00FBBE87 /* Penguin.sks in Resources */,
+				49CF397A1D1DA93A009A681F /* PowerPenguin.sks in Resources */,
 				4981C8021D1C6FB900FBBE87 /* GameScene.sks in Resources */,
 				4981C80E1D1C6FB900FBBE87 /* LaunchScreen.storyboard in Resources */,
 				49CF39781D1D9E5A009A681F /* BlockDestruction.sks in Resources */,
 				4981C80B1D1C6FB900FBBE87 /* Assets.xcassets in Resources */,
 				49CF39691D1CA8A1009A681F /* spark.png in Resources */,
 				4981C84C1D1C718A00FBBE87 /* Bear.sks in Resources */,
+				49139F841D1DB89C00E2A264 /* Level1.sks in Resources */,
 				4981C8441D1C700D00FBBE87 /* assets.atlas in Resources */,
 				4981C85B1D1C747600FBBE87 /* MainScene.sks in Resources */,
+				49139F861D1DC6BF00E2A264 /* Level2.sks in Resources */,
 				49CF396C1D1CA9B5009A681F /* sfx_seal.caf in Resources */,
+				49139F8A1D1DCE8300E2A264 /* Level5.sks in Resources */,
 				4981C8091D1C6FB900FBBE87 /* Main.storyboard in Resources */,
-				49D5C8881D1C7D6C00F41F80 /* Level1.sks in Resources */,
+				49D5C8881D1C7D6C00F41F80 /* Level3.sks in Resources */,
 				4981C8521D1C728800FBBE87 /* CharacterActions.sks in Resources */,
 				49CF39681D1CA8A1009A681F /* SealDeath.sks in Resources */,
+				49139F881D1DCB8900E2A264 /* Level4.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

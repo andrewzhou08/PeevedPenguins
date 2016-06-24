@@ -13,15 +13,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Physics helpers */
     var touchJoint: SKPhysicsJointSpring?
     var penguinJoint: SKPhysicsJointPin?
+    
     var waitingPenguins: SKNode!
     var timeBeforeReload = 0
     var penguin1: SKNode?
     var penguin2: SKNode?
     var penguin3: SKNode?
+    
     var gameOver: SKLabelNode!
+    var scoreLabel: SKLabelNode!
+    var highScoreLabel: SKLabelNode!
     
     var numLives = 3
-    var gameOverTimer = 0
+    var isGameOver = false
+    var isPowerPenguin = false
+    var score = 0
+    var highScore = 0
+    var numNeededSeals = 3
+    var sealsKilled = 0
+    var level = 1
+    var scoreAfterLevelCompletion = 0
+    
     
     override func didMoveToView(view: SKView) {
         /* Set reference to catapultArm node */
@@ -33,6 +45,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         touchNode = childNodeWithName("touchNode") as! SKSpriteNode
         waitingPenguins = childNodeWithName("waitingPenguins")
         gameOver = childNodeWithName("//gameOver") as! SKLabelNode
+        scoreLabel = childNodeWithName("//scoreLabel") as! SKLabelNode
+        highScoreLabel = childNodeWithName("//highScoreLabel") as! SKLabelNode
+        
+        scoreLabel.text = String(score)
+        highScoreLabel.text = "High Score: \(highScore)"
         
         penguin1 = waitingPenguins.childNodeWithName("waitingPenguin1")!
         penguin2 = waitingPenguins.childNodeWithName("waitingPenguin2")!
@@ -76,16 +93,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         restartButton.selectedHandler = {
             self.numLives = 3
             let skView = self.view as SKView!
+            self.isGameOver = false
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             scene.scaleMode = .AspectFit
             skView.showsPhysics = true
             skView.showsDrawCount = true
             skView.showsFPS = false
             skView.presentScene(scene)
+            self.gameOver.removeFromParent()
+            scene.levelNode.removeAllChildren()
+            let resourcePath = NSBundle.mainBundle().pathForResource("Level\(self.level)", ofType: "sks")
+            let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+            scene.levelNode.addChild(newLevel)
+            scene.level = self.level
+            scene.highScore = self.highScore
+            scene.score = self.scoreAfterLevelCompletion
+            scene.scoreAfterLevelCompletion = self.scoreAfterLevelCompletion
         }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if(isGameOver) { return }
         /* Add a new penguin to the scene */
         /* There will only be one touch as multi touch is not enabled by default */
         for touch in touches {
@@ -96,9 +124,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 touchJoint = SKPhysicsJointSpring.jointWithBodyA(touchNode.physicsBody!, bodyB: catapultArm.physicsBody!, anchorA: location, anchorB: location)
                 physicsWorld.addJoint(touchJoint!)
                 
+                
+                
                 /* Add a new penguin to the scene */
-                let resourcePath = NSBundle.mainBundle().pathForResource("Penguin", ofType: "sks")
-                let penguin = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePath!))
+                var resourcePath = NSBundle.mainBundle().pathForResource("Penguin", ofType: "sks")
+                var penguin = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePath!))
+                isPowerPenguin = false
+               
+                if(numLives == 3) {
+                    isPowerPenguin = true
+                    resourcePath = NSBundle.mainBundle().pathForResource("PowerPenguin", ofType: "sks")
+                    penguin = MSReferenceNode(URL: NSURL (fileURLWithPath: resourcePath!))
+                }
+                
                 addChild(penguin)
                 
                 /* Position penguin in the catapult bucket area */
@@ -128,6 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if(isGameOver) { return }
         /* Called when a touch moved */
         
         /* There will only be one touch as multi touch is not enabled by default */
@@ -139,15 +178,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if(isGameOver) { return }
         /* Called when a touch ended */
         if let touchJoint = touchJoint { physicsWorld.removeJoint(touchJoint) }
         if let penguinJoint = penguinJoint {physicsWorld.removeJoint(penguinJoint)}
         numLives -= 1
-        print(numLives)
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        scoreLabel.text = String(score)
+        highScoreLabel.text = "High Score: \(highScore)"
+        
+        if(score > highScore) { highScore = score }
+        
         if let cameraTarget = cameraTarget {
             camera?.position = CGPoint(x: cameraTarget.position.x, y: camera!.position.y)
             
@@ -170,24 +214,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 camera?.runAction(cameraSequence)
                 
                 if(numLives <= 0) {
-                    camera?.addChild(gameOver)
                     numLives = 3
-                    gameOverTimer = 181
+                    camera?.addChild(gameOver)
+                    isGameOver = true
                 }
             }
         }
-        if(gameOverTimer == 1)  {
-            let skView = self.view as SKView!
-            let scene = GameScene(fileNamed:"GameScene") as GameScene!
-            scene.scaleMode = .AspectFit
-            skView.showsPhysics = true
-            skView.showsDrawCount = true
-            skView.showsFPS = false
-            skView.presentScene(scene)
+        
+        if(sealsKilled >= numNeededSeals) {
+            level += 1
+            if(level > 5) { //3 is max level
+                level = 5
+            }
+            sealsKilled = 0
+            cameraTarget?.removeFromParent()
+            numLives = 3
+            penguin1!.removeFromParent()
+            penguin2!.removeFromParent()
+            penguin3!.removeFromParent()
+            
+            addChild(penguin1!)
+            addChild(penguin2!)
+            addChild(penguin3!)
+            loadNextLevel()
         }
-        gameOverTimer -= 1
-        if(gameOverTimer < 0) {
-            gameOverTimer = 0
+        
+        if(level == 1) {
+            numNeededSeals = 3
+        } else if(level == 2) {
+            numNeededSeals = 4
+        } else if(level == 3) {
+            numNeededSeals = 5
+        } else if(level == 4) {
+            numNeededSeals = 6
+        } else {
+            numNeededSeals = 4
         }
     }
     
@@ -204,19 +265,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Check if either physics bodies was a seal */
         if contactA.categoryBitMask == 2 || contactB.categoryBitMask == 2 || contactA.categoryBitMask == 4 || contactB.categoryBitMask == 4 {
+            
+            if(isPowerPenguin) {
+                if(contactA.categoryBitMask == 1) {
+                    nodeA.setScale(CGFloat(3))
+                } else if(contactB.categoryBitMask == 1) {
+                    nodeB.setScale(CGFloat(3))
+                }
+            }
+            
             /* Was the collision more than a gentle nudge? */
-            if contact.collisionImpulse > 3.0 {
+            if contact.collisionImpulse > 0.8 {
                 
                 /* Kill Seal(s) */
-                if contactA.categoryBitMask == 2 { dieSeal(nodeA) }
-                if contactB.categoryBitMask == 2 { dieSeal(nodeB) }
+                if contactA.categoryBitMask == 2 {
+                    dieSeal(nodeA)
+                    score += 5000
+                    sealsKilled += 1
+                }
+                if contactB.categoryBitMask == 2 {
+                    dieSeal(nodeB)
+                    score += 5000
+                    sealsKilled += 1
+                }
             }
-            if contact.collisionImpulse > 50.0 {
+            if contact.collisionImpulse > 10.0 {
                 /*Destroy Block(s)*/
-                if contactA.categoryBitMask == 4 {
-                    destroyBlock(nodeA) }
-                if contactB.categoryBitMask == 4 {
-                    destroyBlock(nodeB) }
+                if contactA.categoryBitMask == 4
+                {
+                    destroyBlock(nodeA)
+                    score += 1000
+                }
+                if contactB.categoryBitMask == 4
+                {
+                    destroyBlock(nodeB)
+                    score += 1000
+                }
             }
         }
     }
@@ -255,5 +339,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeFromParent()
         })
         self.runAction(blockDestruction)
+    }
+    
+    func loadNextLevel() {
+        levelNode.removeAllChildren()
+        let resourcePath = NSBundle.mainBundle().pathForResource("Level\(level)", ofType: "sks")
+        let newLevel = SKReferenceNode (URL: NSURL (fileURLWithPath: resourcePath!))
+        levelNode.addChild(newLevel)
+        scoreAfterLevelCompletion = score
     }
 }
