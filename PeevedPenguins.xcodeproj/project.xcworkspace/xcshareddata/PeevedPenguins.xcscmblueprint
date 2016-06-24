@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "00154A9145BAA8EFE63AC5A57A415815F32B1941",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "00154A9145BAA8EFE63AC5A57A415815F32B1941" : 0,
+    "06988FA571AFCCDD74A2A5E093E402F16ECEB6BF" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D2F1818F-31F0-4BC2-A8F8-B930D80C3AF1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "00154A9145BAA8EFE63AC5A57A415815F32B1941" : "PeevedPenguins\/",
+    "06988FA571AFCCDD74A2A5E093E402F16ECEB6BF" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "PeevedPenguins",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "PeevedPenguins.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/andrewzhou08\/PeevedPenguins.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "00154A9145BAA8EFE63AC5A57A415815F32B1941"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/andrewzhou08\/RobotWarsAI.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "06988FA571AFCCDD74A2A5E093E402F16ECEB6BF"
+    }
+  ]
+}

@@ -26,6 +26,7 @@
 		49CF39681D1CA8A1009A681F /* SealDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49CF39661D1CA8A1009A681F /* SealDeath.sks */; };
 		49CF39691D1CA8A1009A681F /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CF39671D1CA8A1009A681F /* spark.png */; };
 		49CF396C1D1CA9B5009A681F /* sfx_seal.caf in Resources */ = {isa = PBXBuildFile; fileRef = 49CF396B1D1CA9B5009A681F /* sfx_seal.caf */; };
+		49CF39781D1D9E5A009A681F /* BlockDestruction.sks in Resources */ = {isa = PBXBuildFile; fileRef = 49CF39771D1D9E5A009A681F /* BlockDestruction.sks */; };
 		49D5C87A1D1C794D00F41F80 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C86E1D1C794D00F41F80 /* CGFloat+Extensions.swift */; };
 		49D5C87B1D1C794D00F41F80 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C86F1D1C794D00F41F80 /* CGPoint+Extensions.swift */; };
 		49D5C87C1D1C794D00F41F80 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5C8701D1C794D00F41F80 /* CGVector+Extensions.swift */; };
@@ -63,6 +64,7 @@
 		49CF39661D1CA8A1009A681F /* SealDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SealDeath.sks; sourceTree = "<group>"; };
 		49CF39671D1CA8A1009A681F /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		49CF396B1D1CA9B5009A681F /* sfx_seal.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sfx_seal.caf; sourceTree = "<group>"; };
+		49CF39771D1D9E5A009A681F /* BlockDestruction.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlockDestruction.sks; sourceTree = "<group>"; };
 		49D5C86E1D1C794D00F41F80 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		49D5C86F1D1C794D00F41F80 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		49D5C8701D1C794D00F41F80 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				4981C80C1D1C6FB900FBBE87 /* LaunchScreen.storyboard */,
 				4981C80F1D1C6FB900FBBE87 /* Info.plist */,
 				4981C85A1D1C747600FBBE87 /* MainScene.sks */,
+				49CF39771D1D9E5A009A681F /* BlockDestruction.sks */,
 				4981C8011D1C6FB900FBBE87 /* GameScene.sks */,
 				49CF39661D1CA8A1009A681F /* SealDeath.sks */,
 				49CF39671D1CA8A1009A681F /* spark.png */,
@@ -240,6 +243,7 @@
 				4981C8541D1C72EE00FBBE87 /* Penguin.sks in Resources */,
 				4981C8021D1C6FB900FBBE87 /* GameScene.sks in Resources */,
 				4981C80E1D1C6FB900FBBE87 /* LaunchScreen.storyboard in Resources */,
+				49CF39781D1D9E5A009A681F /* BlockDestruction.sks in Resources */,
 				4981C80B1D1C6FB900FBBE87 /* Assets.xcassets in Resources */,
 				49CF39691D1CA8A1009A681F /* spark.png in Resources */,
 				4981C84C1D1C718A00FBBE87 /* Bear.sks in Resources */,

@@ -13,8 +13,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     /* Physics helpers */
     var touchJoint: SKPhysicsJointSpring?
     var penguinJoint: SKPhysicsJointPin?
+    var waitingPenguins: SKNode!
+    var timeBeforeReload = 0
+    var penguin1: SKNode?
+    var penguin2: SKNode?
+    var penguin3: SKNode?
+    var gameOver: SKLabelNode!
     
     var numLives = 3
+    var gameOverTimer = 0
     
     override func didMoveToView(view: SKView) {
         /* Set reference to catapultArm node */
@@ -24,8 +31,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         restartButton = childNodeWithName("//restartButton") as! MSButtonNode
         cantileverNode = childNodeWithName("cantileverNode") as! SKSpriteNode
         touchNode = childNodeWithName("touchNode") as! SKSpriteNode
-        physicsWorld.contactDelegate = self
+        waitingPenguins = childNodeWithName("waitingPenguins")
+        gameOver = childNodeWithName("//gameOver") as! SKLabelNode
         
+        penguin1 = waitingPenguins.childNodeWithName("waitingPenguin1")!
+        penguin2 = waitingPenguins.childNodeWithName("waitingPenguin2")!
+        penguin3 = waitingPenguins.childNodeWithName("waitingPenguin3")!
+        
+        
+        physicsWorld.contactDelegate = self
+        gameOver.removeFromParent()
         
         /* Load Level 1 */
         let resourcePath = NSBundle.mainBundle().pathForResource("Level1", ofType: "sks")
@@ -59,6 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         catapultSpringJoint.frequency = 1.5
         
         restartButton.selectedHandler = {
+            self.numLives = 3
             let skView = self.view as SKView!
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             scene.scaleMode = .AspectFit
@@ -100,6 +116,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 /* Set camera to follow penguin */
                 cameraTarget = penguin.avatar
                 
+                if(numLives == 3) {
+                    penguin1?.removeFromParent()
+                } else if(numLives == 2) {
+                    penguin2?.removeFromParent()
+                } else {
+                    penguin3?.removeFromParent()
+                }
             }
         }
     }
@@ -119,6 +142,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Called when a touch ended */
         if let touchJoint = touchJoint { physicsWorld.removeJoint(touchJoint) }
         if let penguinJoint = penguinJoint {physicsWorld.removeJoint(penguinJoint)}
+        numLives -= 1
+        print(numLives)
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -143,11 +168,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let cameraSequence = SKAction.sequence([cameraDelay,cameraReset])
                 
                 camera?.runAction(cameraSequence)
-                numLives -= 1
+                
+                if(numLives <= 0) {
+                    camera?.addChild(gameOver)
+                    numLives = 3
+                    gameOverTimer = 181
+                }
             }
         }
-        
-        if(numLives < 0) {
+        if(gameOverTimer == 1)  {
             let skView = self.view as SKView!
             let scene = GameScene(fileNamed:"GameScene") as GameScene!
             scene.scaleMode = .AspectFit
@@ -155,6 +184,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             skView.showsDrawCount = true
             skView.showsFPS = false
             skView.presentScene(scene)
+        }
+        gameOverTimer -= 1
+        if(gameOverTimer < 0) {
+            gameOverTimer = 0
         }
     }
     
@@ -170,13 +203,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let nodeB = contactB.node as! SKSpriteNode
         
         /* Check if either physics bodies was a seal */
-        if contactA.categoryBitMask == 2 || contactB.categoryBitMask == 2 {
+        if contactA.categoryBitMask == 2 || contactB.categoryBitMask == 2 || contactA.categoryBitMask == 4 || contactB.categoryBitMask == 4 {
             /* Was the collision more than a gentle nudge? */
-            if contact.collisionImpulse > 2.0 {
+            if contact.collisionImpulse > 3.0 {
                 
                 /* Kill Seal(s) */
                 if contactA.categoryBitMask == 2 { dieSeal(nodeA) }
                 if contactB.categoryBitMask == 2 { dieSeal(nodeB) }
+            }
+            if contact.collisionImpulse > 50.0 {
+                /*Destroy Block(s)*/
+                if contactA.categoryBitMask == 4 {
+                    destroyBlock(nodeA) }
+                if contactB.categoryBitMask == 4 {
+                    destroyBlock(nodeB) }
             }
         }
     }
@@ -203,5 +243,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let sealSFX = SKAction.playSoundFileNamed("sfx_seal", waitForCompletion: false)
         self.runAction(sealSFX)
         
+    }
+    
+    func destroyBlock(node: SKNode) {
+        let particles = SKEmitterNode(fileNamed: "BlockDestruction")!
+        particles.position = convertPoint(node.position, fromNode: node)
+        particles.numParticlesToEmit = 25
+        addChild(particles)
+        
+        let blockDestruction = SKAction.runBlock({
+            node.removeFromParent()
+        })
+        self.runAction(blockDestruction)
     }
 }
